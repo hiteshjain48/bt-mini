@@ -104,7 +104,7 @@ export default function Admin({ role, contract, web3, currentAccount }) {
               </Typography>
               <Divider />
             </Grid>
-            {electionState !== 2 && (
+            {electionState !== 2 && role === 1 && (
               <Grid item xs={12} sx={{ display: "flex" }}>
                 <Button
                   variant="contained"
@@ -117,6 +117,9 @@ export default function Admin({ role, contract, web3, currentAccount }) {
               </Grid>
             )}
 
+
+            {electionState === 0 && role === 1 && (
+              <>
             <Grid item xs={12}>
               <Typography align="center" variant="h6">
                 {electionState === 0 && "ADD VOTERS / CANDIDATES"}
@@ -125,8 +128,6 @@ export default function Admin({ role, contract, web3, currentAccount }) {
               </Typography>
               <Divider />
             </Grid>
-
-            {electionState === 0 && (
               <Grid
                 item
                 xs={12}
@@ -158,9 +159,34 @@ export default function Admin({ role, contract, web3, currentAccount }) {
                   />
                 </Box>
               </Grid>
+              </>
             )}
 
-            {electionState > 0 && (
+            {electionState === 1 && (
+              <Grid
+                item
+                xs={12}
+                sx={{
+                  overflowY: "hidden",
+                  overflowX: "auto",
+                  display: "flex",
+                  width: "98vw",
+                  justifyContent: "center",
+                }}
+              >
+                {candidates &&
+                  candidates.map((candidate, index) => (
+                    <Box sx={{ mx: 2 }} key={index}>
+                      <Candidate
+                        id={index}
+                        name={candidate.name}
+                        voteCount={candidate.votes}
+                      />
+                    </Box>
+                  ))}
+              </Grid>
+            )}
+            {electionState === 2 && role === 1 && (
               <Grid
                 item
                 xs={12}

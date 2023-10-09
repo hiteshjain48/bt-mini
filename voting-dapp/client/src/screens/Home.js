@@ -55,6 +55,7 @@ export default function Home() {
         bgcolor: "background.default",
         color: "text.primary",
         height: "100vh",
+        overflow: 'scroll',
       }}
     >
       {loading ? (
@@ -80,12 +81,20 @@ export default function Home() {
           )}
 
           {role === 2 && (
+            <>
             <Vote
               role={role}
               contract={contract}
               web3={web3}
               currentAccount={currentAccount}
             />
+            <Admin
+              role={role}
+              contract={contract}
+              web3={web3}
+              currentAccount={currentAccount}
+            />
+            </>
           )}
 
           {role === 3 && (
